@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Maximo – El cuidado de tu mascota, simplificado</title>
   <meta name="description" content="Maximo hace fácil el cuidado diario de tu mascota. Vacunas, recordatorios y consejos personalizados con IA para perros y gatos." />
+  <link rel="icon" href="maximo-icon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Nunito:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -51,6 +52,9 @@
     }
 
     .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
       font-family: 'Cormorant Garamond', serif;
       font-weight: 700;
       font-size: 1.3rem;
@@ -58,6 +62,13 @@
       color: var(--gold);
       text-transform: uppercase;
       text-decoration: none;
+    }
+
+    .nav-logo img {
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      display: block;
     }
 
     .nav-links {
@@ -88,6 +99,17 @@
     }
 
     .nav-cta:hover { background: var(--gold-light) !important; color: #000 !important; }
+
+    .hero-app-icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+      overflow: hidden;
+      margin-bottom: 1.75rem;
+      box-shadow: 0 0 0 1px var(--border-strong), 0 20px 50px rgba(212,175,55,0.2);
+    }
+
+    .hero-app-icon img { width: 100%; height: 100%; display: block; }
 
     /* ── HERO ───────────────────────────────────────────── */
     .hero {
@@ -614,7 +636,10 @@
 
   <!-- ── NAV ──────────────────────────────────────────────── -->
   <nav>
-    <a href="#" class="nav-logo">Maximo</a>
+    <a href="#" class="nav-logo">
+      <img src="maximo-icon.png" alt="" />
+      Maximo
+    </a>
     <ul class="nav-links">
       <li><a href="#features">Funciones</a></li>
       <li><a href="#como-funciona">Cómo funciona</a></li>
@@ -625,6 +650,9 @@
 
   <!-- ── HERO ─────────────────────────────────────────────── -->
   <header class="hero">
+    <div class="hero-app-icon">
+      <img src="maximo-icon.png" alt="Maximo" />
+    </div>
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
       Disponible para iOS &amp; Android
@@ -824,7 +852,9 @@
   <!-- ── FOOTER ─────────────────────────────────────────────── -->
   <footer>
     <div class="container">
-      <a href="#" class="footer-logo">Maximo</a>
+      <a href="#" class="footer-logo">
+        <img src="maximo-icon.png" alt="" style="width:22px;height:22px;border-radius:5px;vertical-align:middle;margin-right:0.4rem;" />Maximo
+      </a>
       <ul class="footer-links">
         <li><a href="politicas-privacidad.html">Política de Privacidad</a></li>
         <li><a href="eliminar-cuenta.html">Eliminar Cuenta</a></li>

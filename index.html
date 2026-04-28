@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maximo – El cuidado de tu mascota, simplificado</title>
+  <meta name="description" content="Maximo hace fácil el cuidado diario de tu mascota. Vacunas, recordatorios y consejos personalizados con IA para perros y gatos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Nunito:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #D4AF37;
+      --gold-light: #F5D77A;
+      --gold-dark: #A67C00;
+      --bg: #000000;
+      --surface: #1A1A1A;
+      --surface-elevated: #242424;
+      --text: #FFFFFF;
+      --text-secondary: rgba(255,255,255,0.72);
+      --text-muted: rgba(255,255,255,0.48);
+      --border: rgba(212,175,55,0.22);
+      --border-strong: rgba(212,175,55,0.45);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2rem;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: #000 !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 9999px;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--gold-light) !important; color: #000 !important; }
+
+    /* ── HERO ───────────────────────────────────────────── */
+    .hero {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7rem 1.5rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 30%, rgba(212,175,55,0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(212,175,55,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--border-strong);
+      border-radius: 9999px;
+      padding: 0.35rem 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.08;
+      letter-spacing: 0.01em;
+      max-width: 16ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text-secondary);
+      max-width: 44ch;
+      line-height: 1.65;
+      margin-bottom: 3rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 4rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold);
+      color: #000;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      padding: 0.85rem 2rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--text);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      padding: 0.83rem 2rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border-strong);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
+
+    .hero-scroll {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* ── SECTION COMMON ─────────────────────────────────── */
+    section { padding: 6rem 1.5rem; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 50ch;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── FEATURES ───────────────────────────────────────── */
+    #features { background: var(--bg); }
+
+    .features-header {
+      text-align: center;
+      margin-bottom: 4.5rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-3px);
+    }
+
+    .feature-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: rgba(212,175,55,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .feature-card p {
+      font-size: 0.93rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── HOW IT WORKS ───────────────────────────────────── */
+    #como-funciona {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .steps-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .step {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-top: 2px;
+    }
+
+    .step-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .step-content p {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .steps-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .phone-mockup {
+      width: 260px;
+      aspect-ratio: 9/19;
+      background: var(--surface-elevated);
+      border: 2px solid var(--border-strong);
+      border-radius: 36px;
+      padding: 1.25rem 0.85rem;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,175,55,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      overflow: hidden;
+    }
+
+    .phone-notch {
+      width: 80px; height: 10px;
+      background: #000;
+      border-radius: 9999px;
+      margin: 0 auto;
+    }
+
+    .phone-row {
+      height: 52px;
+      background: var(--surface);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 0.85rem;
+      gap: 0.75rem;
+    }
+
+    .phone-dot {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(212,175,55,0.2);
+      border: 1px solid var(--border-strong);
+      flex-shrink: 0;
+    }
+
+    .phone-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+
+    .phone-line {
+      height: 8px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .phone-line.short { width: 55%; }
+
+    .phone-gold-bar {
+      height: 38px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+      border-radius: 9999px;
+      opacity: 0.9;
+    }
+
+    .phone-glow {
+      position: absolute;
+      inset: -30px;
+      border-radius: 9999px;
+      background: radial-gradient(circle at 50% 50%, rgba(212,175,55,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ── SPECIES ────────────────────────────────────────── */
+    #mascotas { background: var(--bg); }
+
+    .species-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .species-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      text-align: center;
+      transition: border-color 0.25s;
+    }
+
+    .species-card:hover { border-color: var(--border-strong); }
+
+    .species-emoji {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: 1.25rem;
+    }
+
+    .species-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .species-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ── CTA FINAL ──────────────────────────────────────── */
+    #descargar {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+
+    .cta-inner {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .cta-inner .section-title { font-size: clamp(2.2rem, 5vw, 3.8rem); }
+
+    .cta-inner em { color: var(--gold); font-style: italic; }
+
+    .store-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+      padding: 0.85rem 1.5rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, transform 0.15s;
+      min-width: 160px;
+    }
+
+    .store-btn:hover { border-color: var(--gold); transform: translateY(-2px); }
+
+    .store-btn-icon { font-size: 1.75rem; line-height: 1; }
+
+    .store-btn-text { text-align: left; line-height: 1.25; }
+
+    .store-btn-text small {
+      display: block;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .store-btn-text strong { font-size: 1rem; font-weight: 700; }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+
+      .steps-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .steps-visual { order: -1; }
+      .phone-mockup { width: 200px; }
+
+      .species-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      section { padding: 4.5rem 1.25rem; }
+      .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+      .hero-actions { flex-direction: column; align-items: stretch; max-width: 300px; margin-left: auto; margin-right: auto; }
+    }
+
+    /* ── DIVIDER ─────────────────────────────────────────── */
+    .gold-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1.25rem auto 0;
+      border-radius: 1px;
+    }
+
+    .gold-divider.left { margin-left: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ──────────────────────────────────────────────── -->
+  <nav>
+    <a href="#" class="nav-logo">Maximo</a>
+    <ul class="nav-links">
+      <li><a href="#features">Funciones</a></li>
+      <li><a href="#como-funciona">Cómo funciona</a></li>
+      <li><a href="#mascotas">Mascotas</a></li>
+      <li><a href="#descargar" class="nav-cta">Descargar</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <header class="hero">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Disponible para iOS &amp; Android
+    </div>
+    <h1>El cuidado de tu mascota, <em>simplificado</em></h1>
+    <p class="hero-sub">
+      Vacunas al día, recordatorios inteligentes y consejos personalizados con IA.
+      Todo lo que necesitas para cuidar a tu perro o gato en una sola app.
+    </p>
+    <div class="hero-actions">
+      <a href="#descargar" class="btn-primary">
+        Descargar gratis &rarr;
+      </a>
+      <a href="#features" class="btn-outline">
+        Ver funciones
+      </a>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Descubrir
+    </div>
+  </header>
+
+  <!-- ── FEATURES ──────────────────────────────────────────── -->
+  <section id="features">
+    <div class="container">
+      <div class="features-header">
+        <p class="section-label">Funcionalidades</p>
+        <h2 class="section-title">Hacemos fácil el cuidado<br>diario de tu mascota</h2>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="features-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">🐾</div>
+          <h3>Perfil completo</h3>
+          <p>Registra el nombre, especie, raza, peso, fecha de nacimiento y foto de tu mascota. Toda su información en un solo lugar.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💉</div>
+          <h3>Control de vacunas</h3>
+          <p>Lleva un historial de vacunas administradas, guarda fotos del carnet y recibe alertas de las próximas dosis.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔔</div>
+          <h3>Recordatorios inteligentes</h3>
+          <p>Crea recordatorios para comidas, citas veterinarias, medicamentos o cualquier actividad con notificaciones push.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">✨</div>
+          <h3>Consejos con IA</h3>
+          <p>Recibe consejos de cuidado personalizados según la especie, raza y características únicas de tu mascota, generados por inteligencia artificial.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CÓMO FUNCIONA ─────────────────────────────────────── -->
+  <section id="como-funciona">
+    <div class="container">
+      <div class="steps-layout">
+        <div class="steps-list">
+          <div>
+            <p class="section-label">Cómo funciona</p>
+            <h2 class="section-title">Empieza en<br>tres pasos</h2>
+            <div class="gold-divider left"></div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Crea tu cuenta</h3>
+              <p>Regístrate gratis con tu correo electrónico. Tarda menos de un minuto.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Agrega a tu mascota</h3>
+              <p>Ingresa sus datos básicos y sube una foto. Maximo construye su perfil automáticamente.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Cuida sin estrés</h3>
+              <p>Activa recordatorios, revisa vacunas y recibe los consejos personalizados de IA cada día.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="steps-visual">
+          <div class="phone-glow"></div>
+          <div class="phone-mockup">
+            <div class="phone-notch"></div>
+            <div class="phone-row">
+              <div class="phone-dot"></div>
+              <div class="phone-lines">
+                <div class="phone-line"></div>
+                <div class="phone-line short"></div>
+              </div>
+            </div>
+            <div class="phone-row">
+              <div class="phone-dot"></div>
+              <div class="phone-lines">
+                <div class="phone-line short"></div>
+                <div class="phone-line"></div>
+              </div>
+            </div>
+            <div class="phone-gold-bar"></div>
+            <div class="phone-row">
+              <div class="phone-dot"></div>
+              <div class="phone-lines">
+                <div class="phone-line"></div>
+                <div class="phone-line short"></div>
+              </div>
+            </div>
+            <div class="phone-row">
+              <div class="phone-dot"></div>
+              <div class="phone-lines">
+                <div class="phone-line short"></div>
+                <div class="phone-line"></div>
+              </div>
+            </div>
+            <div class="phone-row">
+              <div class="phone-dot"></div>
+              <div class="phone-lines">
+                <div class="phone-line"></div>
+                <div class="phone-line short"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ESPECIES ───────────────────────────────────────────── -->
+  <section id="mascotas">
+    <div class="container">
+      <div style="text-align:center; margin-bottom: 1rem;">
+        <p class="section-label">Para tu compañero</p>
+        <h2 class="section-title">Diseñado para perros y gatos</h2>
+        <p class="section-subtitle" style="margin: 0.75rem auto 0;">Maximo adapta recordatorios, vacunas y consejos según la especie de tu mascota para una experiencia verdaderamente personalizada.</p>
+      </div>
+
+      <div class="species-grid">
+        <div class="species-card">
+          <span class="species-emoji">🐶</span>
+          <h3>Perros</h3>
+          <p>Vacunas para parvovirus, rabia, moquillo y más. Consejos de ejercicio, alimentación e higiene adaptados a la raza de tu perro.</p>
+        </div>
+        <div class="species-card">
+          <span class="species-emoji">🐱</span>
+          <h3>Gatos</h3>
+          <p>Seguimiento de vacunas felinas, recordatorios de desparasitación y tips de comportamiento y cuidado para tu gato.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ───────────────────────────────────────────────── -->
+  <section id="descargar">
+    <div class="container">
+      <div class="cta-inner">
+        <p class="section-label">Descárgala gratis</p>
+        <h2 class="section-title">Tu mascota merece lo <em>mejor</em></h2>
+        <p class="section-subtitle" style="margin: 1rem auto 0;">Únete a los dueños que ya usan Maximo para mantener a sus mascotas sanas, felices y bien cuidadas.</p>
+
+        <div class="store-buttons">
+          <a href="#" class="store-btn">
+            <span class="store-btn-icon">🍎</span>
+            <span class="store-btn-text">
+              <small>Disponible en</small>
+              <strong>App Store</strong>
+            </span>
+          </a>
+          <a href="#" class="store-btn">
+            <span class="store-btn-icon">▶</span>
+            <span class="store-btn-text">
+              <small>Disponible en</small>
+              <strong>Google Play</strong>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <a href="#" class="footer-logo">Maximo</a>
+      <ul class="footer-links">
+        <li><a href="politicas-privacidad.html">Política de Privacidad</a></li>
+        <li><a href="eliminar-cuenta.html">Eliminar Cuenta</a></li>
+        <li><a href="mailto:josecortesjaramillo@gmail.com">Contacto</a></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 Maximo. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,130 +1,431 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eliminar cuenta – MAXIMO</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eliminar Cuenta – Maximo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Nunito:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --bg: #f9f8f6;
-      --text: #1a1a1a;
-      --muted: #595959;
-      --subtle: #7f7f7f;
-      --accent: #003afa;
-      --border: #e0ddd8;
-      --section-bg: #ffffff;
+      --gold: #D4AF37;
+      --gold-light: #F5D77A;
+      --gold-dark: #A67C00;
+      --bg: #000000;
+      --surface: #1A1A1A;
+      --surface-elevated: #242424;
+      --text: #FFFFFF;
+      --text-secondary: rgba(255,255,255,0.72);
+      --text-muted: rgba(255,255,255,0.48);
+      --border: rgba(212,175,55,0.22);
+      --border-strong: rgba(212,175,55,0.45);
+      --error: #E8A0A8;
+      --error-bg: rgba(232,160,168,0.08);
+      --error-border: rgba(232,160,168,0.3);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Nunito', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.7;
-      padding: 2rem 1rem 4rem;
+      line-height: 1.65;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
     }
 
-    .container {
-      max-width: 760px;
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2rem;
+      background: rgba(0,0,0,0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-back:hover { color: var(--gold); }
+
+    /* ── PAGE ── */
+    .page-header {
+      padding: 4rem 1.5rem 3rem;
+      border-bottom: 1px solid var(--border);
+      max-width: 640px;
       margin: 0 auto;
-      background: var(--section-bg);
+      width: 100%;
+    }
+
+    .page-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.85rem;
+    }
+
+    .page-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-header p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      max-width: 46ch;
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      flex: 1;
+      max-width: 640px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 3rem 1.5rem 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* ── WARNING BOX ── */
+    .warning-box {
+      background: var(--error-bg);
+      border: 1px solid var(--error-border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .warning-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .warning-text {
+      font-size: 0.92rem;
+      color: var(--error);
+      line-height: 1.65;
+    }
+
+    .warning-text strong { color: var(--error); }
+
+    /* ── STEPS CARD ── */
+    .steps-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .steps-card h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 1.75rem;
+      color: var(--text);
+    }
+
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--gold);
+      margin-top: 1px;
+    }
+
+    .step-text {
+      padding-top: 4px;
+      font-size: 0.93rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .step-text strong { color: var(--text); }
+
+    /* ── DIVIDER ── */
+    .step-divider {
+      width: 1px;
+      height: 16px;
+      background: var(--border);
+      margin: 0 0 0 15px;
+    }
+
+    /* ── INFO CARDS ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .info-card {
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 3rem 3.5rem;
+      padding: 1.25rem 1.35rem;
     }
 
-    .brand {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .info-card-icon {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .info-card h3 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
       color: var(--text);
-      margin-bottom: 2.5rem;
-      display: inline-block;
-      border-bottom: 2px solid var(--text);
-      padding-bottom: 0.3rem;
-    }
-
-    h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2rem;
-      font-weight: 400;
-      line-height: 1.2;
       margin-bottom: 0.4rem;
     }
 
-    .subtitle {
-      color: var(--subtle);
-      font-size: 0.875rem;
-      margin-bottom: 2rem;
+    .info-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
     }
 
-    hr {
-      border: none;
+    /* ── CONTACT ── */
+    .contact-block {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .contact-block p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-link {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--gold);
+      text-decoration: none;
+      border: 1px solid var(--border-strong);
+      border-radius: 9999px;
+      padding: 0.5rem 1.15rem;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    .contact-link:hover {
+      background: var(--gold);
+      color: #000;
+    }
+
+    /* ── FOOTER ── */
+    footer {
       border-top: 1px solid var(--border);
-      margin: 2rem 0;
+      padding: 2rem 1.5rem;
     }
 
-    p {
-      font-size: 0.9375rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
+    .footer-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    ol {
-      padding-left: 1.5rem;
-      margin-bottom: 1rem;
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-decoration: none;
     }
 
-    ol li {
-      font-size: 0.9375rem;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      list-style: none;
     }
 
-    .summary-box {
-      background: var(--bg);
-      border-left: 3px solid var(--accent);
-      padding: 1rem 1.25rem;
-      border-radius: 0 8px 8px 0;
-      margin: 1.5rem 0;
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
     }
 
-    .summary-box p {
-      margin-bottom: 0;
-      font-size: 0.875rem;
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      width: 100%;
+      margin-top: 0.25rem;
     }
 
-    @media (max-width: 600px) {
-      .container { padding: 1.75rem 1.25rem; }
-      h1 { font-size: 1.5rem; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 540px) {
+      .info-grid { grid-template-columns: 1fr; }
+      .page-header { padding: 2.5rem 1.25rem 2rem; }
+      .content { padding: 2rem 1.25rem 4rem; }
     }
   </style>
 </head>
 <body>
-<div class="container">
 
-  <div class="brand">MAXIMO</div>
+  <nav>
+    <a href="index.html" class="nav-logo">Maximo</a>
+    <a href="index.html" class="nav-back">← Inicio</a>
+  </nav>
 
-  <h1>ELIMINAR TU CUENTA</h1>
-  <p class="subtitle">Última actualización: 28 de abril de 2026</p>
-
-  <hr>
-
-  <p>Para eliminar tu cuenta:</p>
-  <ol>
-    <li>Abre Maximo.</li>
-    <li>Ve a la pestaña <strong>“Mi mascota”</strong>.</li>
-    <li>Desplázate al final.</li>
-    <li>Toca <strong>“Eliminar cuenta”</strong>.</li>
-  </ol>
-
-  <div class="summary-box">
-    <p><strong>Importante:</strong> Todos tus datos se borran permanentemente.</p>
+  <div class="page-header">
+    <p class="page-label">Cuenta</p>
+    <h1>Eliminar tu cuenta</h1>
+    <p>Puedes eliminar tu cuenta y todos tus datos directamente desde la app de Maximo en cualquier momento.</p>
   </div>
 
-</div>
+  <div class="content">
+
+    <div class="warning-box">
+      <span class="warning-icon">⚠️</span>
+      <p class="warning-text"><strong>Esta acción es permanente e irreversible.</strong> Al eliminar tu cuenta se borran todos tus datos: perfil, mascotas, vacunas, recordatorios y fotos. No es posible recuperarlos una vez confirmada la eliminación.</p>
+    </div>
+
+    <div class="steps-card">
+      <h2>Cómo eliminar tu cuenta</h2>
+      <div class="steps-list">
+
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <p class="step-text">Abre la app <strong>Maximo</strong> en tu dispositivo.</p>
+        </div>
+        <div class="step-divider"></div>
+
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <p class="step-text">Ve a la pestaña <strong>"Mi mascota"</strong> en la barra inferior.</p>
+        </div>
+        <div class="step-divider"></div>
+
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <p class="step-text">Desplázate hasta el final de la pantalla.</p>
+        </div>
+        <div class="step-divider"></div>
+
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <p class="step-text">Toca el botón <strong>"Eliminar cuenta"</strong> y confirma cuando se te solicite.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <span class="info-card-icon">🗑️</span>
+        <h3>¿Qué se elimina?</h3>
+        <p>Tu perfil de usuario, mascotas, historial de vacunas, recordatorios y fotos almacenadas.</p>
+      </div>
+      <div class="info-card">
+        <span class="info-card-icon">⏱️</span>
+        <h3>¿Cuánto tarda?</h3>
+        <p>La eliminación es inmediata. En hasta 30 días se purgan los registros de respaldo.</p>
+      </div>
+      <div class="info-card">
+        <span class="info-card-icon">🔒</span>
+        <h3>Retención legal</h3>
+        <p>Podemos conservar cierta información mínima si la ley lo exige (ej. obligaciones fiscales).</p>
+      </div>
+      <div class="info-card">
+        <span class="info-card-icon">↩️</span>
+        <h3>¿Puedo cancelar?</h3>
+        <p>No. Una vez confirmada la eliminación no es posible recuperar tu cuenta ni tus datos.</p>
+      </div>
+    </div>
+
+    <div class="contact-block">
+      <p>¿Tienes problemas para eliminar tu cuenta o necesitas ayuda?</p>
+      <a href="mailto:josecortesjaramillo@gmail.com" class="contact-link">Contactar soporte</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">Maximo</a>
+      <ul class="footer-links">
+        <li><a href="politicas-privacidad.html">Política de Privacidad</a></li>
+        <li><a href="eliminar-cuenta.html">Eliminar Cuenta</a></li>
+        <li><a href="mailto:josecortesjaramillo@gmail.com">Contacto</a></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 Maximo. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
 </body>
 </html>

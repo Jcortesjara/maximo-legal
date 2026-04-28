@@ -1,380 +1,506 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Política de Privacidad – MAXIMO</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidad – Maximo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Nunito:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --bg: #f9f8f6;
-      --text: #1a1a1a;
-      --muted: #595959;
-      --subtle: #7f7f7f;
-      --accent: #003afa;
-      --border: #e0ddd8;
-      --section-bg: #ffffff;
+      --gold: #D4AF37;
+      --gold-light: #F5D77A;
+      --gold-dark: #A67C00;
+      --bg: #000000;
+      --surface: #1A1A1A;
+      --surface-elevated: #242424;
+      --text: #FFFFFF;
+      --text-secondary: rgba(255,255,255,0.72);
+      --text-muted: rgba(255,255,255,0.48);
+      --border: rgba(212,175,55,0.22);
+      --border-strong: rgba(212,175,55,0.45);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Nunito', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.7;
-      padding: 2rem 1rem 4rem;
+      min-height: 100dvh;
     }
 
-    .container {
-      max-width: 760px;
-      margin: 0 auto;
-      background: var(--section-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 3rem 3.5rem;
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2rem;
+      background: rgba(0,0,0,0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .brand {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.12em;
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
       text-transform: uppercase;
-      color: var(--text);
-      margin-bottom: 2.5rem;
-      display: inline-block;
-      border-bottom: 2px solid var(--text);
-      padding-bottom: 0.3rem;
-    }
-
-    h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2rem;
-      font-weight: 400;
-      line-height: 1.2;
-      margin-bottom: 0.4rem;
-    }
-
-    .subtitle {
-      color: var(--subtle);
-      font-size: 0.875rem;
-      margin-bottom: 2rem;
-    }
-
-    hr {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 2rem 0;
-    }
-
-    h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.25rem;
-      font-weight: 400;
-      margin: 2.5rem 0 0.75rem;
-      padding-top: 0.5rem;
-      border-top: 2px solid var(--text);
-      display: inline-block;
-    }
-
-    h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 1.5rem 0 0.5rem;
-      color: var(--text);
-    }
-
-    p {
-      font-size: 0.9375rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    ul {
-      list-style: square;
-      padding-left: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    ul li {
-      font-size: 0.9375rem;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
-    }
-
-    a {
-      color: var(--accent);
       text-decoration: none;
     }
-    a:hover { text-decoration: underline; }
 
-    .toc {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.25rem 1.5rem;
-      margin: 1.5rem 0 2rem;
-    }
-
-    .toc p {
+    .nav-back {
+      font-size: 0.82rem;
       font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-      font-size: 0.875rem;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
-    .toc ol {
-      padding-left: 1.25rem;
-      margin: 0;
+    .nav-back:hover { color: var(--gold); }
+
+    /* ── LAYOUT ── */
+    .page-header {
+      padding: 4rem 1.5rem 3rem;
+      border-bottom: 1px solid var(--border);
+      max-width: 800px;
+      margin: 0 auto;
     }
 
-    .toc li {
-      font-size: 0.875rem;
-      color: var(--muted);
-      margin-bottom: 0.25rem;
+    .page-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.85rem;
     }
 
-    .toc a { color: var(--accent); }
-
-    .summary-box {
-      background: var(--bg);
-      border-left: 3px solid var(--accent);
-      padding: 1rem 1.25rem;
-      border-radius: 0 8px 8px 0;
-      margin: 1.5rem 0;
+    .page-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
     }
 
-    .summary-box p {
+    .page-header .date {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .content-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+      display: flex;
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    /* ── TOC SIDEBAR ── */
+    .toc-sidebar {
+      flex-shrink: 0;
+      width: 220px;
+      position: sticky;
+      top: 80px;
+    }
+
+    .toc-sidebar h2 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .toc-sidebar ol {
+      list-style: none;
+      padding: 0;
+      border-left: 1px solid var(--border);
+      padding-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .toc-sidebar ol li a {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      line-height: 1.4;
+      transition: color 0.2s;
+      display: block;
+    }
+
+    .toc-sidebar ol li a:hover { color: var(--gold); }
+
+    /* ── MAIN CONTENT ── */
+    .doc-body { flex: 1; min-width: 0; }
+
+    .intro-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2.5rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .intro-box strong { color: var(--text); }
+
+    .intro-box a { color: var(--gold); text-decoration: none; }
+    .intro-box a:hover { text-decoration: underline; }
+
+    .section {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section:last-child {
+      border-bottom: none;
       margin-bottom: 0;
-      font-size: 0.875rem;
+      padding-bottom: 0;
+    }
+
+    .section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      line-height: 1.2;
+    }
+
+    .section h3 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text);
+      margin: 1.5rem 0 0.6rem;
+      letter-spacing: 0.01em;
+    }
+
+    .section p {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.85rem;
+      line-height: 1.7;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    .section a { color: var(--gold); text-decoration: none; }
+    .section a:hover { text-decoration: underline; }
+
+    .section ul, .section ol {
+      padding-left: 1.5rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .section ul li, .section ol li {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.4rem;
+      line-height: 1.65;
+    }
+
+    .section ul { list-style: none; padding-left: 0; }
+
+    .section ul li::before {
+      content: '—';
+      color: var(--gold);
+      margin-right: 0.6rem;
+    }
+
+    .highlight-box {
+      background: var(--surface);
+      border-left: 2px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.25rem;
+      margin: 1.25rem 0;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      font-style: italic;
+      line-height: 1.65;
     }
 
     .address-block {
-      background: var(--bg);
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      padding: 1.1rem 1.4rem;
       font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.8;
+      color: var(--text-secondary);
+      line-height: 1.9;
+      margin-top: 0.75rem;
+    }
+
+    .address-block strong { color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      width: 100%;
+      text-align: center;
       margin-top: 0.5rem;
     }
 
-    @media (max-width: 600px) {
-      .container { padding: 1.75rem 1.25rem; }
-      h1 { font-size: 1.5rem; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      .toc-sidebar { display: none; }
+      .content-wrap { padding: 2rem 1.25rem 4rem; }
+      .page-header { padding: 2.5rem 1.25rem 2rem; }
     }
   </style>
 </head>
 <body>
-<div class="container">
 
-  <div class="brand">MAXIMO</div>
+  <nav>
+    <a href="index.html" class="nav-logo">Maximo</a>
+    <a href="index.html" class="nav-back">← Inicio</a>
+  </nav>
 
-  <h1>POLÍTICA DE PRIVACIDAD</h1>
-  <p class="subtitle">Última actualización: 27 de abril de 2026</p>
-
-  <hr>
-
-  <p>Este Aviso de Privacidad para <strong>MAXIMO</strong> (<strong>"nosotros"</strong> o <strong>"nuestro"</strong>) describe cómo y por qué podemos acceder, recopilar, almacenar, usar y/o compartir (<strong>"procesar"</strong>) su información personal cuando utiliza nuestros servicios (<strong>"Servicios"</strong>), incluyendo cuando usted:</p>
-
-  <ul>
-    <li>Descarga y utiliza nuestra aplicación móvil (<strong>Maximo</strong>), o cualquier otra de nuestras aplicaciones que enlace a este Aviso de Privacidad</li>
-    <li>Se relaciona con nosotros de otras formas, incluyendo marketing o eventos</li>
-  </ul>
-
-  <p><strong>¿Preguntas o inquietudes?</strong> Leer este Aviso de Privacidad le ayudará a comprender sus derechos y opciones de privacidad. Somos responsables de tomar decisiones sobre cómo se procesa su información personal. Si no está de acuerdo con nuestras políticas y prácticas, por favor no use nuestros Servicios. Si aún tiene preguntas o inquietudes, contáctenos en <a href="mailto:josecortesjaramillo@gmail.com">josecortesjaramillo@gmail.com</a>.</p>
-
-  <hr>
-
-  <h2>RESUMEN DE PUNTOS CLAVE</h2>
-
-  <div class="summary-box">
-    <p><em>Este resumen proporciona los puntos clave de nuestro Aviso de Privacidad. Puede encontrar más detalles haciendo clic en el enlace tras cada punto o consultando la <a href="#toc">tabla de contenidos</a> a continuación.</em></p>
+  <div class="page-header">
+    <p class="page-label">Legal</p>
+    <h1>Política de Privacidad</h1>
+    <p class="date">Última actualización: 27 de abril de 2026</p>
   </div>
 
-  <p><strong>¿Qué información personal procesamos?</strong> Al visitar, usar o navegar nuestros Servicios, podemos procesar información personal según cómo interactúe con nosotros y los Servicios, las elecciones que haga y los productos y funciones que use. Más información sobre <a href="#personalinfo">la información personal que nos divulga</a>.</p>
+  <div class="content-wrap">
 
-  <p><strong>¿Procesamos información personal sensible?</strong> Cierta información puede considerarse "especial" o "sensible" en determinadas jurisdicciones, por ejemplo, su origen racial o étnico, orientación sexual y creencias religiosas. No procesamos información personal sensible.</p>
+    <!-- TOC -->
+    <aside class="toc-sidebar">
+      <h2>Contenido</h2>
+      <ol>
+        <li><a href="#infocollect">1. Información que recopilamos</a></li>
+        <li><a href="#infouse">2. Cómo procesamos su información</a></li>
+        <li><a href="#whoshare">3. Con quién compartimos</a></li>
+        <li><a href="#ai">4. Productos de IA</a></li>
+        <li><a href="#inforetain">5. Retención de datos</a></li>
+        <li><a href="#infosafe">6. Seguridad</a></li>
+        <li><a href="#infominors">7. Menores de edad</a></li>
+        <li><a href="#privacyrights">8. Sus derechos</a></li>
+        <li><a href="#DNT">9. Do-Not-Track</a></li>
+        <li><a href="#policyupdates">10. Actualizaciones</a></li>
+        <li><a href="#contact">11. Contacto</a></li>
+        <li><a href="#request">12. Acceso y eliminación</a></li>
+      </ol>
+    </aside>
 
-  <p><strong>¿Recopilamos información de terceros?</strong> No recopilamos ninguna información de terceros.</p>
+    <!-- BODY -->
+    <main class="doc-body">
 
-  <p><strong>¿Cómo procesamos su información?</strong> Procesamos su información para proporcionar, mejorar y administrar nuestros Servicios, comunicarnos con usted, para seguridad y prevención de fraudes, y para cumplir con la ley. También podemos procesar su información para otros fines con su consentimiento. Más información sobre <a href="#infouse">cómo procesamos su información</a>.</p>
+      <div class="intro-box">
+        Este Aviso de Privacidad describe cómo <strong>MAXIMO</strong> recopila, usa y protege su información personal cuando utiliza nuestra aplicación móvil. ¿Preguntas? Escríbanos a <a href="mailto:josecortesjaramillo@gmail.com">josecortesjaramillo@gmail.com</a>.
+      </div>
 
-  <p><strong>¿En qué situaciones y con quiénes compartimos información personal?</strong> Podemos compartir información en situaciones específicas y con terceros específicos. Más información sobre <a href="#whoshare">cuándo y con quién compartimos su información personal</a>.</p>
+      <!-- RESUMEN -->
+      <div class="section">
+        <h2>Resumen de puntos clave</h2>
+        <div class="highlight-box">
+          Este resumen proporciona los puntos clave de nuestro Aviso de Privacidad. Puede encontrar más detalles en cada sección a continuación.
+        </div>
+        <p><strong>¿Qué información procesamos?</strong> Información personal que usted nos proporciona al registrarse y usar la app.</p>
+        <p><strong>¿Procesamos información sensible?</strong> No procesamos información personal sensible.</p>
+        <p><strong>¿Recopilamos datos de terceros?</strong> No recopilamos ninguna información de terceros.</p>
+        <p><strong>¿Cómo procesamos su información?</strong> Para proveer y mejorar los Servicios, comunicarnos con usted, y cumplir con la ley.</p>
+        <p><strong>¿Cómo mantener segura su información?</strong> Contamos con medidas técnicas y organizativas adecuadas para protegerla.</p>
+        <p><strong>¿Cuáles son sus derechos?</strong> Según su ubicación, puede tener derechos sobre acceso, corrección o eliminación de su información. Más en la sección <a href="#privacyrights">Sus derechos de privacidad</a>.</p>
+      </div>
 
-  <p><strong>¿Cómo mantenemos segura su información?</strong> Contamos con procesos y procedimientos organizativos y técnicos adecuados para proteger su información personal. Sin embargo, ninguna transmisión electrónica por Internet ni tecnología de almacenamiento puede garantizarse al 100% segura. Más información sobre <a href="#infosafe">cómo mantenemos segura su información</a>.</p>
+      <!-- 1 -->
+      <div class="section" id="infocollect">
+        <h2>1. ¿Qué información recopilamos?</h2>
+        <h3 id="personalinfo">Información que usted nos proporciona</h3>
+        <p>Recopilamos la información personal que usted nos proporciona voluntariamente al registrarse, usar los Servicios o contactarnos. Esto puede incluir:</p>
+        <ul>
+          <li>Dirección de correo electrónico</li>
+        </ul>
+        <p><strong>Información Sensible.</strong> No procesamos información sensible.</p>
+        <h3>Datos de la Aplicación</h3>
+        <p>Si utiliza nuestra app, también podemos recopilar la siguiente información si usted nos otorga permiso:</p>
+        <ul>
+          <li><strong>Acceso a Cámara.</strong> Para cargar fotos de su mascota y carnet de vacunas. Puede revocar este permiso en la configuración de su dispositivo.</li>
+          <li><strong>Notificaciones Push.</strong> Para enviarle recordatorios de cuidado. Puede desactivarlas en la configuración de su dispositivo.</li>
+        </ul>
+        <p>Toda la información personal que nos proporcione debe ser verdadera, completa y precisa.</p>
+      </div>
 
-  <p><strong>¿Cuáles son sus derechos?</strong> Dependiendo de dónde se encuentre geográficamente, la legislación de privacidad aplicable puede otorgarle ciertos derechos sobre su información personal. Más información sobre <a href="#privacyrights">sus derechos de privacidad</a>.</p>
+      <!-- 2 -->
+      <div class="section" id="infouse">
+        <h2>2. ¿Cómo procesamos su información?</h2>
+        <div class="highlight-box">En resumen: procesamos su información para proporcionar, mejorar y administrar nuestros Servicios.</div>
+        <p>Procesamos su información personal por las siguientes razones:</p>
+        <ul>
+          <li><strong>Creación y autenticación de cuentas.</strong> Para que pueda crear e iniciar sesión en su cuenta.</li>
+          <li><strong>Prestación del servicio.</strong> Para proporcionarle las funcionalidades de la app: recordatorios, vacunas, consejos con IA.</li>
+          <li><strong>Comunicaciones administrativas.</strong> Para informarle sobre cambios en nuestros términos y políticas.</li>
+          <li><strong>Seguridad y prevención de fraudes.</strong> Para proteger nuestros Servicios y a nuestros usuarios.</li>
+          <li><strong>Mejora de los Servicios.</strong> Para identificar tendencias de uso y mejorar la experiencia.</li>
+        </ul>
+      </div>
 
-  <p><strong>¿Cómo ejerce sus derechos?</strong> La forma más sencilla es enviando una <a href="https://app.termly.io/dsar/9761ee41-8590-4265-9073-a561d44e7a36" target="_blank" rel="noopener">solicitud de acceso a datos del interesado</a>, o contactándonos. Consideraremos y actuaremos según cualquier solicitud de conformidad con las leyes de protección de datos aplicables.</p>
+      <!-- 3 -->
+      <div class="section" id="whoshare">
+        <h2>3. ¿Cuándo y con quién compartimos su información?</h2>
+        <div class="highlight-box">En resumen: podemos compartir información en situaciones específicas y con los siguientes terceros.</div>
+        <p>Podemos compartir sus datos con proveedores de servicios que actúan en nuestro nombre, bajo contratos de confidencialidad:</p>
+        <ul>
+          <li><strong>OpenAI</strong> — Generación de consejos personalizados con IA.</li>
+          <li><strong>Supabase</strong> — Infraestructura de base de datos y autenticación.</li>
+        </ul>
+        <p>También podemos compartir su información en caso de fusión, venta o adquisición de activos de la empresa.</p>
+      </div>
 
-  <p>¿Desea saber más sobre lo que hacemos con la información que recopilamos? <a href="#toc">Revise el Aviso de Privacidad completo</a>.</p>
+      <!-- 4 -->
+      <div class="section" id="ai">
+        <h2>4. ¿Ofrecemos productos basados en IA?</h2>
+        <div class="highlight-box">En resumen: sí, ofrecemos consejos de cuidado personalizados generados con inteligencia artificial.</div>
+        <p>Como parte de nuestros Servicios, utilizamos inteligencia artificial (a través de <strong>OpenAI</strong>) para generar consejos de cuidado adaptados a la especie, raza y características de su mascota. Su información de mascota puede ser procesada por OpenAI para habilitar esta funcionalidad.</p>
+        <p>No debe utilizar los Productos de IA de ninguna manera que infrinja los términos o políticas de ningún Proveedor de Servicios de IA.</p>
+      </div>
 
-  <hr>
+      <!-- 5 -->
+      <div class="section" id="inforetain">
+        <h2>5. ¿Cuánto tiempo conservamos su información?</h2>
+        <div class="highlight-box">En resumen: conservamos su información mientras su cuenta esté activa o sea necesario para cumplir con obligaciones legales.</div>
+        <p>Solo conservaremos su información personal durante el tiempo necesario para los fines establecidos en este Aviso. Cuando ya no tengamos una necesidad legítima de procesarla, la eliminaremos o anonimizaremos de manera segura.</p>
+      </div>
 
-  <div id="toc" class="toc">
-    <p>Tabla de Contenidos</p>
-    <ol>
-      <li><a href="#infocollect">¿Qué información recopilamos?</a></li>
-      <li><a href="#infouse">¿Cómo procesamos su información?</a></li>
-      <li><a href="#whoshare">¿Cuándo y con quién compartimos su información personal?</a></li>
-      <li><a href="#ai">¿Ofrecemos productos basados en inteligencia artificial?</a></li>
-      <li><a href="#inforetain">¿Cuánto tiempo conservamos su información?</a></li>
-      <li><a href="#infosafe">¿Cómo mantenemos segura su información?</a></li>
-      <li><a href="#infominors">¿Recopilamos información de menores de edad?</a></li>
-      <li><a href="#privacyrights">¿Cuáles son sus derechos de privacidad?</a></li>
-      <li><a href="#DNT">Controles para funciones de No Rastreo (Do-Not-Track)</a></li>
-      <li><a href="#policyupdates">¿Realizamos actualizaciones a este aviso?</a></li>
-      <li><a href="#contact">¿Cómo puede contactarnos sobre este aviso?</a></li>
-      <li><a href="#request">¿Cómo puede revisar, actualizar o eliminar los datos que recopilamos de usted?</a></li>
-    </ol>
+      <!-- 6 -->
+      <div class="section" id="infosafe">
+        <h2>6. ¿Cómo mantenemos segura su información?</h2>
+        <div class="highlight-box">En resumen: implementamos medidas técnicas y organizativas adecuadas para proteger su información personal.</div>
+        <p>Hemos implementado medidas de seguridad técnicas y organizativas para proteger su información personal. Sin embargo, ninguna transmisión electrónica ni tecnología de almacenamiento puede garantizarse al 100% segura. Solo debe acceder a los Servicios dentro de un entorno seguro.</p>
+      </div>
+
+      <!-- 7 -->
+      <div class="section" id="infominors">
+        <h2>7. ¿Recopilamos información de menores de edad?</h2>
+        <div class="highlight-box">En resumen: no recopilamos datos de menores de 18 años intencionalmente.</div>
+        <p>No recopilamos, solicitamos datos ni hacemos marketing a menores de 18 años. Al utilizar los Servicios, usted declara tener al menos 18 años. Si descubrimos que hemos recopilado datos de un menor, eliminaremos la cuenta y la información de inmediato. Contáctenos en <a href="mailto:josecortesjaramillo@gmail.com">josecortesjaramillo@gmail.com</a> si tiene conocimiento de algún caso.</p>
+      </div>
+
+      <!-- 8 -->
+      <div class="section" id="privacyrights">
+        <h2>8. ¿Cuáles son sus derechos de privacidad?</h2>
+        <div class="highlight-box">En resumen: puede revisar, cambiar o cancelar su cuenta en cualquier momento.</div>
+        <h3>Retirar su consentimiento</h3>
+        <p>Puede retirar su consentimiento para el procesamiento de su información personal en cualquier momento, contactándonos en <a href="#contact">la sección de contacto</a>. Esto no afecta la legalidad del procesamiento previo.</p>
+        <h3>Información de la Cuenta</h3>
+        <p>Para revisar o cancelar su cuenta, puede iniciar sesión en la configuración de la app. Tras la cancelación, eliminaremos su cuenta e información de nuestras bases de datos activas, aunque podemos conservar cierta información para cumplir con obligaciones legales.</p>
+        <p>¿Preguntas sobre sus derechos? Escríbanos a <a href="mailto:josecortesjaramillo@gmail.com">josecortesjaramillo@gmail.com</a>.</p>
+      </div>
+
+      <!-- 9 -->
+      <div class="section" id="DNT">
+        <h2>9. Controles para Do-Not-Track</h2>
+        <p>La mayoría de navegadores incluyen una función de No Rastreo (DNT). Actualmente no existe un estándar tecnológico uniforme para implementar señales DNT, por lo que no respondemos a ellas. Si en el futuro se adopta un estándar, actualizaremos este Aviso.</p>
+      </div>
+
+      <!-- 10 -->
+      <div class="section" id="policyupdates">
+        <h2>10. ¿Realizamos actualizaciones a este aviso?</h2>
+        <div class="highlight-box">En resumen: sí, actualizaremos este aviso según sea necesario.</div>
+        <p>Podemos actualizar este Aviso de Privacidad periódicamente. La fecha de "Última actualización" al inicio indica cuándo fue revisado por última vez. Le recomendamos revisarlo con frecuencia.</p>
+      </div>
+
+      <!-- 11 -->
+      <div class="section" id="contact">
+        <h2>11. ¿Cómo puede contactarnos?</h2>
+        <p>Si tiene preguntas o comentarios sobre este aviso, puede escribirnos a <a href="mailto:josecortesjaramillo@gmail.com">josecortesjaramillo@gmail.com</a> o por correo postal a:</p>
+        <div class="address-block">
+          <strong>MAXIMO</strong><br>
+          17a Sur51 Cra. 48<br>
+          Medellín, Antioquia 050022<br>
+          Colombia
+        </div>
+      </div>
+
+      <!-- 12 -->
+      <div class="section" id="request">
+        <h2>12. ¿Cómo puede revisar, actualizar o eliminar sus datos?</h2>
+        <p>De acuerdo con las leyes aplicables, usted puede tener el derecho de solicitar acceso, corrección o eliminación de su información personal. Para hacerlo, puede <a href="https://app.termly.io/dsar/9761ee41-8590-4265-9073-a561d44e7a36" target="_blank" rel="noopener">completar una solicitud de acceso a datos</a> o contactarnos directamente. También puede eliminar su cuenta directamente desde la app — consulte nuestra <a href="eliminar-cuenta.html">guía de eliminación de cuenta</a>.</p>
+      </div>
+
+    </main>
   </div>
 
-  <!-- SECTION 1 -->
-  <h2 id="infocollect">1. ¿QUÉ INFORMACIÓN RECOPILAMOS?</h2>
+  <footer>
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">Maximo</a>
+      <ul class="footer-links">
+        <li><a href="politicas-privacidad.html">Política de Privacidad</a></li>
+        <li><a href="eliminar-cuenta.html">Eliminar Cuenta</a></li>
+        <li><a href="mailto:josecortesjaramillo@gmail.com">Contacto</a></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 Maximo. Todos los derechos reservados.</p>
+    </div>
+  </footer>
 
-  <h3 id="personalinfo">Información personal que usted nos proporciona</h3>
-  <p><em><strong>En resumen:</strong> Recopilamos la información personal que usted nos proporciona.</em></p>
-
-  <p>Recopilamos la información personal que usted nos proporciona voluntariamente cuando se registra en los Servicios, expresa interés en obtener información sobre nosotros o nuestros productos y Servicios, cuando participa en actividades en los Servicios, o cuando nos contacta.</p>
-
-  <p><strong>Información Personal Proporcionada por Usted.</strong> La información personal que recopilamos depende del contexto de sus interacciones con nosotros y los Servicios, las elecciones que haga y los productos y funciones que use. La información personal que recopilamos puede incluir lo siguiente:</p>
-  <ul>
-    <li>Direcciones de correo electrónico</li>
-  </ul>
-
-  <p><strong>Información Sensible.</strong> No procesamos información sensible.</p>
-
-  <h3>Datos de la Aplicación</h3>
-  <p>Si utiliza nuestra(s) aplicación(es), también podemos recopilar la siguiente información si usted nos otorga acceso o permiso:</p>
-  <ul>
-    <li><em>Acceso al Dispositivo Móvil.</em> Podemos solicitar acceso o permiso a ciertas funciones de su dispositivo móvil, incluyendo la <strong>cámara</strong> y otras funciones. Si desea cambiar nuestro acceso o permisos, puede hacerlo en la configuración de su dispositivo.</li>
-    <li><em>Notificaciones Push.</em> Podemos solicitarle el envío de notificaciones push relacionadas con su cuenta o ciertas funciones de la(s) aplicación(es). Si desea desactivar este tipo de comunicaciones, puede hacerlo en la configuración de su dispositivo.</li>
-  </ul>
-
-  <p>Esta información se necesita principalmente para mantener la seguridad y el funcionamiento de nuestra(s) aplicación(es), para la resolución de problemas, y para nuestros análisis e informes internos.</p>
-
-  <p>Toda la información personal que nos proporcione debe ser verdadera, completa y precisa, y debe notificarnos cualquier cambio en dicha información personal.</p>
-
-  <!-- SECTION 2 -->
-  <h2 id="infouse">2. ¿CÓMO PROCESAMOS SU INFORMACIÓN?</h2>
-  <p><em><strong>En resumen:</strong> Procesamos su información para proporcionar, mejorar y administrar nuestros Servicios, comunicarnos con usted, para seguridad y prevención de fraudes, y para cumplir con la ley. También podemos procesar su información para otros fines con su consentimiento.</em></p>
-
-  <p><strong>Procesamos su información personal por diversas razones, dependiendo de cómo interactúe con nuestros Servicios, incluyendo:</strong></p>
-  <ul>
-    <li><strong>Para facilitar la creación y autenticación de cuentas y gestionar cuentas de usuario.</strong> Podemos procesar su información para que pueda crear e iniciar sesión en su cuenta, así como mantenerla en funcionamiento.</li>
-    <li><strong>Para prestar y facilitar la prestación de servicios al usuario.</strong> Podemos procesar su información para proporcionarle el servicio solicitado.</li>
-    <li><strong>Para enviarle información administrativa.</strong> Podemos procesar su información para enviarle detalles sobre nuestros productos y servicios, cambios en nuestros términos y políticas, y otra información similar.</li>
-    <li><strong>Para proteger nuestros Servicios.</strong> Podemos procesar su información como parte de nuestros esfuerzos para mantener nuestros Servicios seguros, incluyendo la monitorización y prevención del fraude.</li>
-    <li><strong>Para evaluar y mejorar nuestros Servicios, productos, marketing y su experiencia.</strong> Podemos procesar su información cuando consideramos necesario identificar tendencias de uso, determinar la efectividad de nuestras campañas promocionales, y evaluar y mejorar nuestros Servicios, productos, marketing y su experiencia.</li>
-  </ul>
-
-  <!-- SECTION 3 -->
-  <h2 id="whoshare">3. ¿CUÁNDO Y CON QUIÉN COMPARTIMOS SU INFORMACIÓN PERSONAL?</h2>
-  <p><em><strong>En resumen:</strong> Podemos compartir información en situaciones específicas descritas en esta sección y/o con los siguientes terceros.</em></p>
-
-  <p><strong>Proveedores, Consultores y Otros Proveedores de Servicios de Terceros.</strong> Podemos compartir sus datos con proveedores, prestadores de servicios, contratistas o agentes (<strong>"terceros"</strong>) que realizan servicios para nosotros o en nuestro nombre y requieren acceso a dicha información para hacerlo. Contamos con contratos con nuestros terceros diseñados para salvaguardar su información personal. Esto significa que no pueden hacer nada con su información personal a menos que les hayamos instruido para ello. Tampoco compartirán su información personal con ninguna organización distinta a nosotros, y se comprometen a proteger los datos que conservan en nuestro nombre y a retenerlos por el período que indiquemos.</p>
-
-  <p>Los terceros con quienes podemos compartir información personal son los siguientes:</p>
-  <ul>
-    <li><strong>Proveedores de Servicios de IA</strong>
-      <ul><li>OpenAI</li></ul>
-    </li>
-    <li><strong>Optimización de Funcionalidad e Infraestructura</strong>
-      <ul><li>Supabase</li></ul>
-    </li>
-  </ul>
-
-  <p>También podemos necesitar compartir su información personal en las siguientes situaciones:</p>
-  <ul>
-    <li><strong>Transferencias de Negocios.</strong> Podemos compartir o transferir su información en relación con, o durante las negociaciones de, cualquier fusión, venta de activos de la empresa, financiamiento, o adquisición de la totalidad o una parte de nuestro negocio a otra empresa.</li>
-  </ul>
-
-  <!-- SECTION 4 -->
-  <h2 id="ai">4. ¿OFRECEMOS PRODUCTOS BASADOS EN INTELIGENCIA ARTIFICIAL?</h2>
-  <p><em><strong>En resumen:</strong> Ofrecemos productos, funciones o herramientas impulsadas por inteligencia artificial, aprendizaje automático o tecnologías similares.</em></p>
-
-  <p>Como parte de nuestros Servicios, ofrecemos productos, funciones o herramientas impulsadas por inteligencia artificial, aprendizaje automático o tecnologías similares (colectivamente, "Productos de IA"). Estas herramientas están diseñadas para mejorar su experiencia y brindarle soluciones innovadoras. Los términos de este Aviso de Privacidad rigen su uso de los Productos de IA dentro de nuestros Servicios.</p>
-
-  <h3>Uso de Tecnologías de IA</h3>
-  <p>Proporcionamos los Productos de IA a través de proveedores de servicios de terceros (<strong>"Proveedores de Servicios de IA"</strong>), incluyendo <strong>OpenAI</strong>. Su entrada, salida e información personal serán compartidas con y procesadas por estos Proveedores de Servicios de IA para habilitar su uso de nuestros Productos de IA para los fines descritos en <a href="#whoshare">¿Cuándo y con quién compartimos su información personal?</a>. No debe utilizar los Productos de IA de ninguna manera que infrinja los términos o políticas de ningún Proveedor de Servicios de IA.</p>
-
-  <h3>Nuestros Productos de IA</h3>
-  <p>Nuestros Productos de IA están diseñados para las siguientes funciones:</p>
-  <ul>
-    <li>Aplicaciones de IA</li>
-  </ul>
-
-  <h3>Cómo Procesamos Sus Datos con IA</h3>
-  <p>Toda la información personal procesada mediante nuestros Productos de IA se maneja conforme a este Aviso de Privacidad y nuestros acuerdos con terceros. Esto garantiza alta seguridad y protege su información personal durante todo el proceso.</p>
-
-  <!-- SECTION 5 -->
-  <h2 id="inforetain">5. ¿CUÁNTO TIEMPO CONSERVAMOS SU INFORMACIÓN?</h2>
-  <p><em><strong>En resumen:</strong> Conservamos su información durante el tiempo necesario para cumplir con los propósitos descritos en este Aviso de Privacidad, a menos que la ley exija lo contrario.</em></p>
-
-  <p>Solo conservaremos su información personal durante el tiempo necesario para los fines establecidos en este Aviso de Privacidad, a menos que un período de retención más largo sea requerido o permitido por la ley (como requisitos fiscales, contables u otros requisitos legales). Ningún propósito en este aviso requerirá conservar su información personal por más tiempo del período en que los usuarios tengan una cuenta activa con nosotros.</p>
-
-  <p>Cuando ya no tengamos una necesidad comercial legítima de procesar su información personal, la eliminaremos o anonimizaremos, o, si esto no es posible (por ejemplo, porque su información personal se ha almacenado en archivos de respaldo), almacenaremos su información personal de forma segura y la aislaremos de cualquier procesamiento adicional hasta que sea posible su eliminación.</p>
-
-  <!-- SECTION 6 -->
-  <h2 id="infosafe">6. ¿CÓMO MANTENEMOS SEGURA SU INFORMACIÓN?</h2>
-  <p><em><strong>En resumen:</strong> Buscamos proteger su información personal mediante un sistema de medidas de seguridad organizativas y técnicas.</em></p>
-
-  <p>Hemos implementado medidas de seguridad técnicas y organizativas apropiadas y razonables diseñadas para proteger la seguridad de cualquier información personal que procesamos. Sin embargo, a pesar de nuestras salvaguardas y esfuerzos para proteger su información, ninguna transmisión electrónica por Internet ni tecnología de almacenamiento de información puede garantizarse al 100% segura, por lo que no podemos prometer ni garantizar que piratas informáticos, ciberdelincuentes u otros terceros no autorizados no puedan superar nuestra seguridad y recopilar, acceder, robar o modificar indebidamente su información. Aunque haremos todo lo posible para proteger su información personal, la transmisión de información personal hacia y desde nuestros Servicios es bajo su propio riesgo. Solo debe acceder a los Servicios dentro de un entorno seguro.</p>
-
-  <!-- SECTION 7 -->
-  <h2 id="infominors">7. ¿RECOPILAMOS INFORMACIÓN DE MENORES DE EDAD?</h2>
-  <p><em><strong>En resumen:</strong> No recopilamos datos de menores de 18 años ni les hacemos marketing de forma intencional.</em></p>
-
-  <p>No recopilamos, solicitamos datos ni hacemos marketing a menores de 18 años, ni vendemos conscientemente dicha información personal. Al utilizar los Servicios, usted declara tener al menos 18 años, o ser el padre, madre o tutor de dicho menor y otorgar su consentimiento para que el menor dependiente use los Servicios. Si descubrimos que se ha recopilado información personal de usuarios menores de 18 años, desactivaremos la cuenta y tomaremos medidas razonables para eliminar dicha información de nuestros registros de manera oportuna. Si tiene conocimiento de algún dato que podamos haber recopilado de menores de 18 años, contáctenos en <a href="mailto:josecortesjaramillo@gmail.com">josecortesjaramillo@gmail.com</a>.</p>
-
-  <!-- SECTION 8 -->
-  <h2 id="privacyrights">8. ¿CUÁLES SON SUS DERECHOS DE PRIVACIDAD?</h2>
-  <p><em><strong>En resumen:</strong> Puede revisar, cambiar o cancelar su cuenta en cualquier momento, dependiendo de su país, provincia o estado de residencia.</em></p>
-
-  <h3>Retirar su consentimiento</h3>
-  <p>Si nos basamos en su consentimiento para procesar su información personal, usted tiene el derecho de retirar dicho consentimiento en cualquier momento. Puede hacerlo contactándonos mediante los detalles de contacto proporcionados en la sección <a href="#contact">¿Cómo puede contactarnos sobre este aviso?</a></p>
-
-  <p>Sin embargo, tenga en cuenta que esto no afectará la legalidad del procesamiento antes de su retiro, ni, cuando la ley aplicable lo permita, afectará el procesamiento de su información personal realizado sobre otras bases legales distintas al consentimiento.</p>
-
-  <h3>Información de la Cuenta</h3>
-  <p>Si desea revisar o cambiar la información de su cuenta o cancelarla, puede:</p>
-  <ul>
-    <li>Iniciar sesión en la configuración de su cuenta y actualizar su perfil de usuario.</li>
-  </ul>
-
-  <p>Tras su solicitud de cancelación de cuenta, desactivaremos o eliminaremos su cuenta e información de nuestras bases de datos activas. Sin embargo, podemos conservar cierta información en nuestros archivos para prevenir fraudes, resolver problemas, asistir con investigaciones, hacer cumplir nuestros términos legales y/o cumplir con los requisitos legales aplicables.</p>
-
-  <p>Si tiene preguntas o comentarios sobre sus derechos de privacidad, puede enviarnos un correo electrónico a <a href="mailto:josecortesjaramillo@gmail.com">josecortesjaramillo@gmail.com</a>.</p>
-
-  <!-- SECTION 9 -->
-  <h2 id="DNT">9. CONTROLES PARA FUNCIONES DE NO RASTREO (DO-NOT-TRACK)</h2>
-  <p>La mayoría de los navegadores web y algunos sistemas operativos y aplicaciones móviles incluyen una función o configuración de No Rastreo ("DNT") que puede activar para señalar su preferencia de privacidad de no tener datos sobre sus actividades de navegación en línea monitorizados y recopilados. En este momento, no existe un estándar tecnológico uniforme para reconocer e implementar señales DNT. Por ello, actualmente no respondemos a las señales DNT del navegador ni a ningún otro mecanismo que comunique automáticamente su elección de no ser rastreado en línea. Si en el futuro se adopta un estándar para el seguimiento en línea que debamos seguir, le informaremos sobre esa práctica en una versión revisada de este Aviso de Privacidad.</p>
-
-  <!-- SECTION 10 -->
-  <h2 id="policyupdates">10. ¿REALIZAMOS ACTUALIZACIONES A ESTE AVISO?</h2>
-  <p><em><strong>En resumen:</strong> Sí, actualizaremos este aviso según sea necesario para mantenernos en cumplimiento con las leyes relevantes.</em></p>
-
-  <p>Podemos actualizar este Aviso de Privacidad de vez en cuando. La versión actualizada se indicará con una fecha de "Revisión" actualizada en la parte superior de este Aviso de Privacidad. Si realizamos cambios sustanciales a este Aviso de Privacidad, podemos notificarle publicando de manera prominente un aviso de dichos cambios o enviándole directamente una notificación. Le recomendamos revisar este Aviso de Privacidad con frecuencia para estar informado sobre cómo protegemos su información.</p>
-
-  <!-- SECTION 11 -->
-  <h2 id="contact">11. ¿CÓMO PUEDE CONTACTARNOS SOBRE ESTE AVISO?</h2>
-  <p>Si tiene preguntas o comentarios sobre este aviso, puede enviarnos un correo electrónico a <a href="mailto:josecortesjaramillo@gmail.com">josecortesjaramillo@gmail.com</a> o contactarnos por correo postal a:</p>
-
-  <div class="address-block">
-    <strong>MAXIMO</strong><br>
-    17a Sur51 Cra. 48<br>
-    Medellín, Antioquia 050022<br>
-    Colombia
-  </div>
-
-  <!-- SECTION 12 -->
-  <h2 id="request">12. ¿CÓMO PUEDE REVISAR, ACTUALIZAR O ELIMINAR LOS DATOS QUE RECOPILAMOS DE USTED?</h2>
-  <p>De acuerdo con las leyes aplicables de su país, usted puede tener el derecho de solicitar acceso a la información personal que recopilamos de usted, detalles sobre cómo la hemos procesado, corregir imprecisiones o eliminar su información personal. También puede tener el derecho de retirar su consentimiento para nuestro procesamiento de su información personal. Estos derechos pueden estar limitados en algunas circunstancias por la ley aplicable. Para solicitar la revisión, actualización o eliminación de su información personal, por favor complete y envíe una <a href="https://app.termly.io/dsar/9761ee41-8590-4265-9073-a561d44e7a36" target="_blank" rel="noopener">solicitud de acceso a datos del interesado</a>.</p>
-
-</div>
 </body>
 </html>
